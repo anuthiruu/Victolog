@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Department of Computer Application - PSG College of Technology</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    #header {
+      background-color: #f1f1f1;
+      padding: 20px;
+    }
+
+    #logo {
+      float: left;
+    }
+
+    #department-logo {
+      float: right;
+    }
+
+    #content {
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    #login-form {
+      width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+    }
+
+    input[type="text"], input[type="password"], select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 10px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      background-repeat: no-repeat;
+      background-position: 10px 10px;
+      padding-left: 40px;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      margin: 10px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .register-link {
+      color: #4CAF50;
+    }
+  </style>
+</head>
+<body>
+  <div id="header">
+    <img id="logo" src="{% static 'psg-tech-logo.png' %}"  width="150" height="150"  alt="PSG Tech Logo">
+    <img id="department-logo" src="{% static 'department-logo.png' %}" width="150" height="150" alt="Department Logo">
+  </div>
+  <div id="content">
+    <h1>PSG College of Technology</h1>
+    <h2>Department of Computer Application</h2>
+    <div id="login-form">
+      <h3>Login</h3>
+      <form action="{% url 'login' %}" method="POST">  
+         {% csrf_token %}
+        <input type="text" placeholder="rollno" name="rollno" style="background-image: url('mail-icon.png');">
+        <input type="password" placeholder="Password" name="password" style="background-image: url('password-icon.png');">
+        
+        <input type="submit" value="Login">
+      </form>  
+
+      <p>Don't have an account? <a class="register-link" href="{% url 'register'%}">Register</a></p>
+    </div>
+  </div>
+</body>
+</html>

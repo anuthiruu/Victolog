@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}PSG College of Technology{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        
+        header {
+            background-color: #0074c2;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+        }
+        
+        h1 {
+            font-size: 2em;
+            margin: 0;
+        }
+        
+        h2 {
+            font-size: 1.5em;
+            margin: 0;
+        }
+        
+        main {
+            padding: 2em;
+        }
+        
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        /* Reset default margin and padding */
+        body, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Navigation bar styles */
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+        
+        /* Navbar list styles */
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        
+        /* Navbar list items styles */
+        .navbar li {
+            flex: 1;
+            text-align: center;
+            padding: 10px 0;
+        }
+        
+        /* Navbar links styles */
+        .navbar a {
+            display: block;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            padding: 14px 16px;
+            transition: background-color 0.3s;
+        }
+        
+        /* Change background color on hover */
+        .navbar a:hover {
+            background-color: #f44336;
+        }         
+
+         /* Dropdown styles */
+    .dropdown {
+        display: inline-block;
+    }
+
+    .dropbtn {
+        font-size: 16px;
+        border: none;
+        outline: none;
+        color: white;
+        padding: 14px 16px;
+        background-color: inherit;
+        font-family: inherit;
+        margin: 0;
+        transition: background-color 0.3s;
+    }
+
+    /* Dropdown content styles */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        transition: background-color 0.3s;
+    }
+
+    /* Change background color on hover for dropdown items */
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+
+    /* Show dropdown content on hover */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+        .form-style-5 h2 {
+    font-size: 1.4em;
+    margin-bottom: 20px;
+}.form-style-5 form {
+    max-width: 500px;
+    margin: 10px auto;
+    padding: 20px;
+    background: #f4f7f8;
+    border-radius: 8px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.form-style-5 fieldset {
+    border: none;
+    margin-bottom: 20px;
+}
+
+.form-style-5 legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.form-style-5 label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.form-style-5 input[type="text"],
+.form-style-5 input[type="date"],
+.form-style-5 textarea,
+.form-style-5 input[type="file"] {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    background: rgba(255,255,255,.1);
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    margin: 0;
+    outline: 0;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box; 
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box; 
+    background-color: #e8eeef;
+    color: black; /* Change the font color to black */
+    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    margin-bottom: 20px;
+}
+
+.form-style-5 input[type="text"]:focus,
+.form-style-5 input[type="date"]:focus,
+.form-style-5 textarea:focus,
+.form-style-5 input[type="file"]:focus {
+    background: #d2d9dd;
+}
+
+.form-style-5 input[type="submit"] {
+    position: relative;
+    display: block;
+    padding: 19px 39px 18px 39px;
+    color: #FFF;
+    margin: 0 auto;
+    background: #1abc9c;
+    font-size: 18px;
+    text-align: center;
+    font-style: normal;
+    width: 100%;
+    border: 1px solid #16a085;
+    border-width: 1px 1px 3px;
+    margin-bottom: 10px;
+}
+
+.form-style-5 input[type="submit"]:hover {
+    background: #109177;
+}
+ 
+
+    
+
+</style>
+</head>
+<body>
+    <header>
+        <h1>PSG College of Technology</h1>
+        <h2>Department of Computer Application</h2>
+    </header>
+    
+    <nav>   
+        <div class="navbar">
+            <ul>
+                <li><a href="{% url 'dashboard' %}">Home</a></li>
+                <li><a href="{%url 'about' %}">About</a></li>  
+                <li class="dropdown">
+                    <a href="#">Achievements</a>
+                    <div class="dropdown-content">
+                        <a href="{%url 'academic_achievement' %}">Academic Achievement</a>
+                        <a href="{%url 'extracurricular_achievement' %}">Extracurricular</a>
+                        <a href="{%url 'placement_achievement' %}">Placement Achievement</a> 
+                        <a href="{%url 'workshop_achievement' %}">Workshop Attended</a>  
+                        <a href="{%url 'achievement' %}">Other Achievement</a>
+
+                    </div>
+                </li>  
+                
+                <li><a href="{%url 'view_achievement' %}">View Achievement</a></li>  
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+               
+                <li><a href="{% url 'logout_view' %}">Logout</a></li>   
+            </ul>
+        </div>
+        
+    </nav>
+    <main>   
+        {% include 'includes/messages.html' %}
+        {% block content %}{% endblock %}
+    </main>    
+
+    <div class="form-style-5">
+      <center><h2>Update workshop Achievement</h2></center>  
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}    
+            <fieldset>
+                <legend>Roll number</legend>
+                <input type="text" name="username" value="{{ data.user.username }}" readonly>
+            </fieldset>  
+            
+    
+            
+            <fieldset>
+                <legend>Organizer name  </legend>
+                <input type="text" name="title" value="{{ data.title }}" required></textarea>
+            </fieldset>   
+
+            <fieldset>
+                <legend>Topic of the workshop </legend>
+                <input type="text" name="title1" value="{{ data.title1 }}"  required></textarea>
+            </fieldset>  
+            
+            <fieldset>
+                <legend>Description about the workshop  </legend>
+                <textarea name="description" rows="4" required>{{ data.description }}</textarea>
+            </fieldset>
+            
+            <fieldset>
+                <legend> from date </legend>
+                <input type="date" name="fromdate"  value="{{ data.fromdate|date:'Y-m-d' }}"  required>    
+            </fieldset>  
+
+            <fieldset>
+                <legend>To date </legend>
+                <input type="date" name="todate" value="{{ data.todate|date:'Y-m-d' }}" required>    
+            </fieldset>
+            
+
+            <fieldset>
+                <legend> No of Days</legend>
+                <input type="text" name="days"  value="{{ data.days }}" required></textarea>
+            </fieldset>
+    
+            <fieldset>
+                <legend> Certificate photo </legend>
+                {% if data.photo1 %}
+                <img src="{{ data.photo1.url }}" height = "100" alt="Photo 1">
+            {% endif %}
+            <input type="file" name="photo1">
+            </fieldset>  
+            <fieldset>
+                <legend>Photo 2</legend>
+                {% if data.photo2 %}
+                    <img src="{{ data.photo2.url }}" height = "100" alt="Photo 2">
+                {% endif %}
+                <input type="file" name="photo2">
+            </fieldset>
+    
+    
+            
+            <!-- Add other fields as needed -->
+    
+            <input type="submit" value="Update">
+        </form>
+    </div>
+    
+   
+</body>
+</html>

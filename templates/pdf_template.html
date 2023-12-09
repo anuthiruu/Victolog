@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user_profile.name }}'s Achievements</title>
+    <style>
+        body {
+            padding: 20px;
+            background-color: #f4f4f4; /* Light gray background */
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #009688; /* Teal text color */
+            text-align: center;
+        }
+        .user-profile {
+            display: flex;
+            align-items: center;
+            background-color: #fff; /* White box background */
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+        }
+        .user-details {
+            flex: 1;
+            padding-right: 20px;
+        }
+        .user-details p {
+            color: #555; /* Dark gray text color for paragraphs */
+            margin: 5px 0;
+        }
+        .user-photo {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%; /* Make it a circle */
+        }
+        h2 {
+            color: #009688; /* Teal text color */
+            margin-top: 20px;
+        }
+        .achievement-box {
+            background-color: #fff; /* White box background */
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #009688; /* Teal background for header cells */
+            color: #fff; /* White text color for header cells */
+        }
+        .achievement-heading {
+            color: #009688; /* Teal text color */
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>{{ user_profile.name }}'s Achievements</h1>
+
+    <div class="user-profile">
+        <div class="user-details">
+            <h2>User's Profile</h2>
+            <p>Roll No: {{ user_profile.userid }}</p>
+            <p>Email: {{ user_profile.email }}</p>
+            <p>Phone: {{ user_profile.phone }}</p>
+            <p>Year of Study: {{ user_profile.yearofstudy }}</p>
+        </div>
+        <div>
+            <img class="user-photo" src="{{ user_profile.photo.path }}" alt="User Photo">
+        </div>
+    </div>
+
+    <div class="achievement-box">
+        <h2 class="achievement-heading"><center>Academic Achievements</center></h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>S.NO</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Image 1</th>
+                    <th>Image 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for achievement in academic_achievements %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td><strong>{{ achievement.title }}</strong></td>
+                    <td>{{ achievement.description }}</td>
+                    <td>
+                        {% if achievement.photo1 %}
+                            <img src="{{ achievement.photo1.path }}" alt="Image 1" height="100" width="100">
+                        {% else %}
+                            <!-- Provide a placeholder or some text if there's no photo -->
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if achievement.photo2 %}
+                            <img src="{{ achievement.photo2.path }}" alt="Image 2" height="100" width="100">
+                        {% else %}
+                            <!-- Provide a placeholder or some text if there's no photo -->
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Continue with similar structures for other achievement sections -->   
+    <div class="achievement-box">
+        <h2 class="achievement-heading"><center>Extracurricular Achievements</center></h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>S.NO</th>
+                    <th>Title</th>
+                    <th>EVENT NAME</th>
+                    <th>Position</th>
+                    
+                    <th>Image 1</th>
+                    <th>Image 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for achievement in extracurricular_achievements %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    
+                    <td>{{ achievement.description }}</td> 
+                    <td>{{ achievement.position }}</td>
+                    <td>
+                        {% if achievement.photo1 %}
+                            <img src="{{ achievement.photo1.path }}" alt="Image 1" height="100" width="100">
+                        {% else %}
+                            <!-- Provide a placeholder or some text if there's no photo -->
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if achievement.photo2 %}
+                            <img src="{{ achievement.photo2.path }}" alt="Image 2" height="100" width="100">
+                        {% else %}
+                            <!-- Provide a placeholder or some text if there's no photo -->
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>   
+
+    <div class="achievement-box">
+        <h2 class="achievement-heading"><center>Placement Achievements</center></h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>S.NO</th>
+                    <th>Title</th>
+                    <th>Position</th>
+                    <th>Description</th>
+                    <th>Image 1</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for achievement in placement_achievements %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td><strong>{{ achievement.title }}</strong></td>
+                    <td>{{ achievement.position }}</td>
+                    <td>{{ achievement.description }}</td>
+                    <td>
+                        {% if achievement.photo1 %}
+                            <img src="{{ achievement.photo1.path }}" alt="Image 1" height="100" width="100">
+                        {% else %}
+                            <!-- Provide a placeholder or some text if there's no photo -->
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="achievement-box">
+        <h2 class="achievement-heading"><center>Workshop Achievements</center></h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>S.NO</th>
+                    <th>Organizer Name</th>
+                    <th>Topic of workshop</th>
+                    <th>Description</th>
+                    <th>From Date</th>
+                    <th>To Date</th>
+                    <th>No Of Days</th>
+                    <th>Image 1</th>
+                    <th>Image 2</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for achievement in workshop_achievements %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td><strong>{{ achievement.title }}</strong></td>
+                    <td>{{ achievement.title1 }}</td>
+                    <td>{{ achievement.description }}</td>
+                    <td>{{ achievement.fromdate }}</td>
+                    <td>{{ achievement.todate }}</td>
+                    <td>{{ achievement.days }}</td>
+                    <td>
+                        {% if achievement.photo1 %}
+                            <img src="{{ achievement.photo1.path }}" alt="Image 1" height="100" width="100">
+                        {% else %}
+                            <!-- Provide a placeholder or some text if there's no photo -->
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if achievement.photo2 %}
+                            <img src="{{ achievement.photo2.path }}" alt="Image 2" height="100" width="100">
+                        {% else %}
+                            <!-- Provide a placeholder or some text if there's no photo -->
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+        
+    
+
+</body>
+</html>

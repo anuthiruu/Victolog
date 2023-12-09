@@ -1,0 +1,134 @@
+{%load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Department of Computer Application - PSG College of Technology</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  {% if messages %}
+  <div class="messages">
+      {% for message in messages %}
+      <div class="{{ message.tags }}">
+          {{ message }}
+      </div>
+      {% endfor %}
+  </div>
+  {% endif %}
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    #header {
+      background-color: #f1f1f1;
+      padding: 20px;
+    }
+
+    #logo {
+      float: left;
+    }
+
+    #department-logo {
+      float: right;
+    }
+
+    #content {
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    #register-form {
+      width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+    }
+
+    input[type="text"], input[type="password"], select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 10px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      margin: 10px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .login-link {
+      color: #4CAF50;
+    }    
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold; 
+        text-align: left;
+    }
+
+    /* Style for the file input */
+    input[type="file"] {
+        display: block;
+        margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div id="header">
+    <img id="logo" src="{% static 'psg-tech-logo.png' %}"  width="150" height="150"  alt="PSG Tech Logo">
+    <img id="department-logo" src="{% static 'department-logo.png' %}" width="150" height="150" alt="Department Logo">
+  </div>
+  <div id="content">
+    <h1>PSG College of Technology</h1>
+    <h2>Department of Computer Application</h2>
+    <div id="register-form">
+      <h3>Register</h3>
+      <form action="{% url 'register'%}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" placeholder="Roll No" name="rollno" style="content: '\f007';"  required> 
+        <input type="text" placeholder="name" name="name" style="content: '\f007';"  pattern="[a-zA-Z\s]*" title="Only letters and spaces are allowed" required>
+
+        <input type="text" placeholder="Email" name="email" style="content: '\f0e0';"  pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+        <input type="text" placeholder="Phone Number" name="phone" style="content: '\f10b';" pattern="[0-9]{10}" title="Enter a 10-digit phone number"  >
+        <select name="yearofstudy" style="content: '\f19d';" required>
+          <option value="1st">23MX</option>
+          <option value="2nd">22MX</option>
+        </select>  
+        <select name="usertype" style="content: '\f19d';" required>
+            <option value="staff">staff</option>
+            <option value="student">student</option>
+          </select>   
+        
+         <!--  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  -->
+          
+        <input type="password" placeholder="Password" name="password" style="content: '\f023';"  
+        title="8 characters, at least 1 uppercase, 1 lowercase and 1 number" required>
+        <input type="password" placeholder="Confirm Password" name="confirm_password" style="content: '\f023';" 
+        title="8 characters, at least 1 uppercase, 1 lowercase  and 1 number" required>  
+        <label for="photo">Profile Photo :</label>
+        <fieldset>
+          
+          <input type="file" name="photo">
+      </fieldset>
+        <input type="submit"  value="Register">
+      </form>
+      <p>Already have an account  ? <a class="login-link" href="{% url 'login'%}">Login</a></p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}PSG College of Technology{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        
+        header {
+            background-color: #0074c2;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+        }
+        
+        h1 {
+            font-size: 2em;
+            margin: 0;
+        }
+        
+        h2 {
+            font-size: 1.5em;
+            margin: 0;
+        }
+        
+        main {
+            padding: 2em;
+        }
+        
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        /* Reset default margin and padding */
+        body, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Navigation bar styles */
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+        
+        /* Navbar list styles */
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        
+        /* Navbar list items styles */
+        .navbar li {
+            flex: 1;
+            text-align: center;
+            padding: 10px 0;
+        }
+        
+        /* Navbar links styles */
+        .navbar a {
+            display: block;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            padding: 14px 16px;
+            transition: background-color 0.3s;
+        }
+        
+        /* Change background color on hover */
+        .navbar a:hover {
+            background-color: #f44336;
+        }   
+
+        
+    
+    </style>  
+     {% load static %} 
+     <link rel="stylesheet" href="{%static 'bootstrap/css/bootstrap.min.css' %}">
+ 
+</head>
+<body>
+    <header>
+        <h1>PSG College of Technology</h1>
+        <h2>Department of Computer Application</h2>
+    </header>
+    
+    <nav>   
+        <div class="navbar">
+            <ul>
+                <li><a href="{% url 'dashboard' %}">Home</a></li>
+                <li><a href="{%url 'about_staff' %}">About</a></li>  
+                <li><a href="{%url 'student_list' %}">students</a></li>                     
+                <li><a href="{% url 'profile_staff' %}">Profile</a></li>
+
+                <li><a href="{% url 'logout_view' %}">Logout</a></li>   
+            </ul>
+        </div>
+        
+    </nav>
+    
+    <main>   
+        {% include 'includes/messages.html' %}
+        {% block content %}{% endblock %}
+    </main>     
+
+    <div class="container-fluid">
+        <div class="col-md">
+        <h3 class="page-header text-primary text-center">students list</h3>
+        <table class="table table-bordered">
+            <thead >
+               <tr>
+                <th>S.NO</th>
+                <th>NAME    </th>
+                <th>ROLL NO</th>
+                <th>PHONE NO</th>
+                <th>EMAIL ID</th>
+                <th>PHOTO</th>
+                <th>VIEW ACHIEVEMENT </th> 
+                <th>DOWNLOAD ACHIEVEMENT PDF</th>
+                
+               
+               </tr>
+            </thead>
+            
+                  {% for data in detail %}
+                  <tbody>
+                    <tr>
+                        <th>{{forloop.counter}}</th>
+                        <th>{{data.name}}</th>
+                        <th>{{data.userid}}</th>
+                        <th>{{data.phone}}</th>  
+                        <th>{{data.email}}</th> 
+
+                        {% if data.photo %}
+                       <th> <center><img src="{{data.photo.url}}" alt=""  height="75" ></center></th>  
+                       {% else %}  
+                       
+                       {% endif %}     
+                       <th><a class="btn btn-success"  href="{% url 'staff_view_achievement' data.userid %}">VIEW</a></th>   
+                       <th><a class="btn btn-danger" href="{% url 'generate_pdf' data.userid %}">DOWNLOAD</a></th>
+                       
+                    </tr>
+                  </tbody>
+                  {% endfor %}
+            
+        </table>
+
+     </div>
+</div>
+
+      
+    
+
+   
+</body>
+</html>
